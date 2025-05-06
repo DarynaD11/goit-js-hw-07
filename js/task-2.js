@@ -27,10 +27,16 @@ const images = [
 
 const galleryElem = document.querySelector(".gallery");
 
-const list = images
-  .map((item) => {
-    return `<li><img src="${item.url}" alt="${item.alt}"></li>`;
-  })
-  .join("");
+function createImageMarkup(item) {
+  return `<li><img src="${item.url}" alt="${item.alt}"></li>`;
+}
+function createImagesMarkup(items) {
+  return items.map(createImageMarkup).join("");
+}
 
-galleryElem.insertAdjacentHTML("beforeend", list);
+function render(items) {
+  const markup = createImagesMarkup(items);
+  galleryElem.insertAdjacentHTML("beforeend", markup);
+}
+
+render(images);
